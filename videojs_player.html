@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DRM</title>
+    <style>
+    body {
+      padding-top: 50px;
+      color: #868688;
+      background-color: #FAFCFF;
+    }
+
+    nav {
+      background-color: #e7e7e7
+    }
+
+    nav a {
+      color: #868688;
+    }
+
+    nav a:hover {
+      color: #606062;
+      text-decoration: none;
+    }
+
+    .navbar-toggle .icon-bar {
+      background-color: #868688;
+    }
+
+    .starter-template {
+      padding: 40px 15px;
+      text-align: center;
+    }
+
+    .video-js {
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+<body>
+
+  <video id=example-video width=640 height=360 class="video-js vjs-default-skin" controls preload="metadata"></video>
+
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet" />
+
+   <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/3.1.1/dash.all.debug.js"></script>
+  <script src="	https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/2.11.0/videojs-dash.js"></script> <!-- TODO do we want to hotlink? Possible crash if too much web traffic? -->
+
+
+  <script>
+
+
+        var player = videojs('example-video');
+        player.ready(function() {
+          player.src({
+          //src: 'my aws s3 bucket link',
+              src: "https://drm-test-videos.s3.amazonaws.com/output-eduardo/stream.mpd",
+              type: "application/dash+xml",
+
+              //To playback WV content, you must provide the URL to a Widevine license server proxy.
+          keySystemOptions: [
+              {
+                  name: 'com.widevine.alpha',
+                  options: {
+                      serverURL: 'https://widevine-dash.ezdrm.com/proxy?pX=B7DC36'
+
+                  }
+              },
+              {
+                  name: 'com.microsoft.playready',
+                  options: {
+                      serverURL: 'https://playready.ezdrm.com/cency/preauth.aspx?pX=1147E7'
+
+                  }
+              }
+          ]
+          });
+
+  player.play();
+    });
+
+    </script>
+</body>
+
+
+</html>
