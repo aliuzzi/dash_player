@@ -46,23 +46,21 @@
 
   <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet" />
 
-   <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
+  <script src="https://vjs.zencdn.net/7.8.3/video.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/3.1.1/dash.all.debug.js"></script>
-  <script src="	https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/2.11.0/videojs-dash.js"></script> <!-- TODO do we want to hotlink? Possible crash if too much web traffic? -->
+  <script src="	https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/2.11.0/videojs-dash.js"></script>
 
 
   <script>
-
-
         var player = videojs('example-video');
         player.ready(function() {
           player.src({
-          //src: 'my aws s3 bucket link',
-              src: "https://drm-test-videos.s3.amazonaws.com/output-eduardo/stream.mpd",
+              //src: 'my aws s3 bucket link, example',
+              src: "https://drm-test-videos.s3.test/example.mpd", 
               type: "application/dash+xml",
 
               //To playback WV content, you must provide the URL to a Widevine license server proxy.
-          keySystemOptions: [
+               keySystemOptions: [
               {
                   name: 'com.widevine.alpha',
                   options: {
