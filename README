@@ -1,0 +1,2 @@
+This is an example of a DRM compatible media / video player. This video player can playback enrypted videos on Widevine (Google Chrome) and Playready (Windows IE/Edge). 
+I have used example links of the server / bucket links where your encrypted video is stored. 
